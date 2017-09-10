@@ -51,9 +51,9 @@ document.querySelector("#form").onsubmit = function(e) {
 }
 
 function preload() {
-    Object.values(data).forEach(function(src) {
+    Object.keys(data).forEach(function(key) { 
         var img = new Image();
-        img.src = src;
+        img.src = data[key];
     });
 }
 preload();
