@@ -56,9 +56,13 @@
       
       var m = new Multiply();
 
-      document.body.onclick = document.onkeypress = document.ontouch = function(e) {
+      document.body.onclick = document.onkeypress = function(e) {
           m.next();
-      }
+      };
+      
+      document.body.addEventListener("touchend", function(e) {
+          m.next();
+      }; false);
       
       m.next()
   </script>
