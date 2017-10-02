@@ -1,0 +1,71 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+
+  <title>Tables de multiplication</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=1" />
+
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+      #math {
+          font-size: 6em;
+          font-family: Verdana, sans-serif;
+      }
+  </style>
+
+</head>
+
+<body>
+  <div id="math"></div>
+  <script>
+      var MAX = 10;
+      function rand() {
+          return Math.ceil(Math.random() * MAX);
+      }
+      
+      
+      function Add() {
+      }
+      
+      Add.prototype.ask = function() {
+          this.a = rand();
+          this.b = rand();
+          document.querySelector("#math").textContent = this.a + " + " + this.b + " = ?";
+          this.state = "asked";
+      }
+      
+      
+      Add.prototype.answer = function() {
+          document.querySelector("#math").textContent = this.a + " + " + this.b + " = " + (this.a + this.b);
+          this.state = "answered";
+      }
+      
+      Add.prototype.next = function() {
+          if (this.state == "asked") {
+              this.answer();
+          } else {
+              this.ask();
+          }
+      }
+
+      
+      var m = new Add();
+
+      document.body.onclick = document.onkeypress = function(e) {
+          m.next();
+      };
+      
+      document.body.addEventListener("touchend", function(e) {
+          m.next();
+      }, false);
+      
+      m.next()
+  </script>
+
+</body>
+</html>
